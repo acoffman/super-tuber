@@ -18,3 +18,5 @@
 /config/master.key
 
 .solargraph.yml
+
+db/*.sqlite3
