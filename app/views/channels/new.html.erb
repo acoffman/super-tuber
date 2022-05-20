@@ -1,0 +1,22 @@
+<%= turbo_frame_tag 'notice' do %>
+  <div class="modal is-active" data-controller="closeable" data-action="keyup@document->closeable#handleKeyup">
+    <div class="modal-background" data-action="click->closeable#close"></div>
+    <div class="modal-content">
+      <div class="box has-background-light">
+        <%= form_with url: channels_path, method: :post do |f| %>
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <%= f.text_field :target_url, class: 'input', placeholder: 'Channel or Video URL' %>
+            </div>
+            <div class="control not-loading">
+              <%= f.submit "Subscribe", class: 'button is-primary' %>
+            </div>
+            <div class="control loading">
+              <button class="button is-primary is-loading">Subscribe</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

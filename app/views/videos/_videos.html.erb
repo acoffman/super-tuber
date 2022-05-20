@@ -1,0 +1,6 @@
+<% if videos.size == 0 %>
+  <%= render 'application/nothing_here' %>
+<% else %>
+  <%= render videos %>
+  <%== pagy_bulma_nav(pagy) %>
+<% end %>

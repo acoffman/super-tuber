@@ -1,0 +1,34 @@
+<div id="<%= dom_id channel %>" class="block box has-background-grey-lighter">
+  <div class="columns is-vcentered">
+  <div class="column is-8">
+    <p class="has-text-grey-darker">
+      <%= link_to channel_videos_path(channel), class: 'has-text-grey-darker', data: { turbo_frame: 'content', turbo_action: 'advance' } do %>
+        <strong><%= channel.name %></strong>
+      <% end %>
+    </p>
+    <%= render partial: 'status_tag', locals: { channel: channel } %>
+  </div>
+  <div class="column">
+    <%= turbo_frame_tag dom_id(channel, :controls) do %>
+      <span class="buttons are-medium is-right">
+        <%= button_to channel.youtube_url, title: 'Channel Link', form: {target: '_blank'}, method: :get, class: 'button is-text' do %>
+          <span class="icon"><i class="gg-external"></i></span>
+        <% end %>
+        <div class="control not-loading">
+          <%= button_to channel_path(channel), title: 'Refresh', class: 'button is-text', method: :put do %>
+            <span class="icon"><i class="gg-sync"></i></span>
+          <% end %>
+        </div>
+        <div class="loading">
+          <button class="button is-loading">
+            <span class="icon"><i class="gg-sync"></i></span>
+          </button>
+        </div>
+        <%= button_to channel_path(channel), title: 'Delete', class: 'button is-text', method: :delete do %>
+          <span class="icon"><i class="gg-trash"></i></span>
+        <% end %>
+      </span>
+    <% end %>
+  </div>
+  </div>
+</div>

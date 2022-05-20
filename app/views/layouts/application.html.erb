@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>🥔 SuperTuber</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link href='https://css.gg/css?=math-plus|check-o|undo|heart|trash|close|sync|external|log-out' rel='stylesheet'>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= turbo_stream_from :videos %>
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <section class="section">
+          <%= render partial: 'application/nav', locals: { selected: nil, channel: nil } %>
+          <%= turbo_frame_tag 'notice' do %>
+            <div id="notice"></div>
+          <% end %>
+          <%= yield %>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

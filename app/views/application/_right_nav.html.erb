@@ -1,0 +1,47 @@
+  <div id="right-nav" class="level-right">
+    <% if channel %>
+      <div class="level-item">
+        <%= button_to "/videos/#{selected}", class: 'button is-rounded', method: :get, data: { turbo_frame: 'content', turbo_action: 'advance' } do %>
+            <span class="icon">
+              <i class="gg-close"></i>
+            </span>
+            <span>
+              <%= channel.name %>
+            </span>
+        <% end %>
+      </div>
+    <% end %>
+    <p class="<%= nav_class(id: 'new', selected: selected) %>">
+    <%= link_to @channel? channel_videos_path(@channel) : root_path, data: { turbo_frame: 'content', turbo_action: 'advance' } do %>
+      New
+    <% end %>
+    </p>
+    <p class="<%= nav_class(id: 'watched', selected: selected) %>">
+    <%= link_to @channel ? channel_videos_watched_path(@channel) : watched_videos_path, data: { turbo_frame: 'content', turbo_action: 'advance' } do %>
+      Watched
+    <% end %>
+    </p>
+    <p class="<%= nav_class(id: 'saved', selected: selected) %>">
+    <%= link_to @channel ? channel_videos_saved_path(@channel) : saved_videos_path, data: { turbo_frame: 'content', turbo_action: 'advance' } do %>
+      Saved
+    <% end %>
+    </p>
+    <p class="<%= nav_class(id: 'channels', selected: selected) %>">
+    <%= link_to channels_path, data: { turbo_frame: 'content', turbo_action: 'advance' } do %>
+      Channels
+    <% end %>
+    </p>
+    <div class="level-item">
+      <div class="not-loading">
+        <%= button_to new_channel_path, class: 'button is-primary', method: :get, data: { turbo_frame: 'notice' }  do %>
+          <span class="icon">
+            <i class="gg-math-plus"></i>
+          </span>
+          <span>Add</span>
+        <% end %>
+      </div>
+      <%= button_to login_path, class: 'button is-text', title: 'Logout', method: :delete do %>
+        <span class="icon"> <i class="gg-log-out"></i> </span>
+      <% end %>
+    </div>
+  </div>

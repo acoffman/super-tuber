@@ -1,0 +1,3 @@
+<span id="<%= dom_id(channel, :last_updated) %>" class="tag <%= tag_class(channel: channel) %> is-small">
+  Last Update - <%= channel.last_fetch_attempt.nil? ? 'Never' : time_ago_in_words(channel.last_fetch_attempt) %>
+</span>

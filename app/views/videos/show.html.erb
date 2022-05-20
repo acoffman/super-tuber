@@ -1,0 +1,7 @@
+<%= turbo_frame_tag dom_id(@video, :watch) do %>
+  <figure class="media-left">
+    <div class="crop">
+      <iframe width="480" height="270" src="https://www.youtube-nocookie.com/embed/<%= @video.youtube_video_id %>?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </figure>
+<% end %>

@@ -1,0 +1,11 @@
+<nav id="main-nav" class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <%= form_with(url: filter_path_helper(channel: channel, selected: selected), method: :get, data: { controller: 'filter', turbo_action: 'advance', turbo_frame: 'content'}) do |f| %>
+        <%= f.text_field :filter, class: 'input', placeholder: 'Filter', value: params[:filter], data: { action: 'input->filter#debouncedSubmit' } %>
+        <%= f.hidden_field :filter_request, value: true %>
+      <% end %>
+    </div>
+  </div>
+    <%= render partial: 'application/right_nav', locals: { selected: @selected, channel: @channel } %>
+</nav>

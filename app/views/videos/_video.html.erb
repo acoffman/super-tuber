@@ -1,0 +1,49 @@
+<div id="<%= dom_id video %>" class="block box has-background-grey-lighter">
+  <div class="media">
+    <%= turbo_frame_tag dom_id(video, :watch) do %>
+      <%= link_to video_path(video) do %>
+        <figure class="media-left">
+          <div class="crop video-thumbnail">
+            <img src="<%= video.thumbnail_url %>" alt="<%= video.title %>">
+          </div>
+        </figure>
+      <% end %>
+    <% end %>
+    <div class="media-content">
+      <div class="content">
+        <p>
+        <%= link_to video.youtube_url, class: 'video-youtube-link has-text-grey-darker' do %>
+          <strong><%= video.title %></strong>
+        <% end  %>
+        <br/>
+        <%= link_to "/channels/#{video.channel.id}/videos", class: 'has-text-grey is-underlined', data: { turbo_frame: 'content', turbo_action: 'advance' } do %>
+          <small><%= video.channel.name %> - <%= time_ago_in_words(video.video_published_at) %> ago</small>
+        <% end %>
+        </p>
+        <p class="has-text-grey-darker is-size-6">
+        <%= simple_format(video.description.truncate(200, separator: /\s/)) %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="buttons is-right are-medium action-buttons">
+    <% if video.unseen? || video.saved? %>
+      <%= button_to video_path(video), title: 'Mark as watched', class: 'button is-text', method: :put, params: { status: :seen } do %>
+        <span class="icon"><i class="gg-check-o"></i></span>
+      <% end %>
+    <% end %>
+    <% if video.seen? %>
+      <%= button_to video_path(video), title: 'Mark as new', class: 'button is-text', method: :put, params: { status: :unseen } do %>
+        <span class="icon"><i class="gg-undo"></i></span>
+      <% end %>
+    <% end %>
+    <% if !video.saved? %>
+      <%= button_to video_path(video), title: 'Save for later', class: 'button is-text', method: :put, params: { status: :saved } do %>
+        <span class="icon"><i class="gg-heart"></i></span>
+      <% end %>
+    <% end %>
+    <%= button_to video_path(video), title: 'Delete', class: 'button is-text', method: :delete do %>
+      <span class="icon"><i class="gg-trash"></i></span>
+    <% end %>
+  </div>
+</div>

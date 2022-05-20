@@ -1,0 +1,18 @@
+<%= turbo_stream.replace 'notice' do %>
+  <div data-controller="closeable">
+    <% notification_type = @errors.none? ? 'is-primary' : 'is-warning' %>
+    <div class="notification block <%= notification_type %>">
+      <button class="delete" data-action="click->closeable#close"></button>
+      <% if @errors.none? %>
+        Subscribed to <%= @channel.name %>
+      <% else %>
+        <%= simple_format(@errors.join("\n")) %>
+      <% end %>
+    </div>
+    <div class="block"></div>
+  </div>
+<% end %>
+
+<% if @errors.none? %>
+  <%= turbo_stream.replace 'video-list-items',  partial: 'videos/videos', locals: { videos: @videos, pagy: @pagy } %>
+<% end %>
