@@ -39,7 +39,7 @@ class RefreshFeed
           youtube_url: entry.media_url,
           thumbnail_url: entry.media_thumbnail_url,
           title: entry.media_title,
-          description: entry.content
+          description: entry.content || ''
         ) if entry.updated != existing_video.video_updated_at
       else
         Video.create!(
@@ -47,7 +47,7 @@ class RefreshFeed
           youtube_url: entry.media_url,
           thumbnail_url: entry.media_thumbnail_url,
           title: entry.media_title,
-          description: entry.content,
+          description: entry.content || '',
           video_published_at: entry.published,
           video_updated_at: entry.updated,
           channel: channel,

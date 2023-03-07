@@ -2,8 +2,20 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="closeable"
 export default class extends Controller {
+
+  static values  = {
+    exitClass: String
+  }
+
   close() {
-    this.element.remove();
+    if(this.hasExitClassValue) {
+      this.element.classList.add(this.exitClassValue);
+      this.element.addEventListener('animationend', () => {
+        this.element.remove();
+      });
+    } else {
+      this.element.remove();
+    }
   }
 
   handleKeyup(e) {

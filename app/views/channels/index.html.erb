@@ -1,10 +1,12 @@
 <%= turbo_frame_tag 'content' do %>
-  <% if @is_filter_request %>
-    <%= turbo_stream.replace 'right-nav', partial: 'application/right_nav', locals: { selected: @selected, channel: nil } %>
-  <% else %>
-    <%= turbo_stream.replace 'main-nav', partial: 'application/nav', locals: { selected: @selected, channel: nil} %>
-  <% end %>
-  <%= render partial: 'channels/channels', locals: { channels: @channels, pagy: @pagy } %>
+  <div class="animate-slide-in">
+    <% if @is_filter_request %>
+      <%= turbo_stream.replace 'right-nav', partial: 'application/right_nav', locals: { selected: @selected, channel: nil } %>
+    <% else %>
+      <%= turbo_stream.replace 'main-nav', partial: 'application/nav', locals: { selected: @selected, channel: nil} %>
+    <% end %>
+    <%= render partial: 'channels/channels', locals: { channels: @channels, pagy: @pagy } %>
+  </div>
 <% end %>
 
 

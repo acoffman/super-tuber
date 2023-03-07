@@ -1,8 +1,8 @@
 <%= turbo_frame_tag 'notice' do %>
-  <div class="modal is-active" data-controller="closeable" data-action="keyup@document->closeable#handleKeyup">
-    <div class="modal-background" data-action="click->closeable#close"></div>
+  <div class="modal is-active" data-closeable-exit-class-value="animate-fade-out" data-controller="closeable" data-action="keyup@document->closeable#handleKeyup">
+    <div class="modal-background animate-fade-in" data-action="click->closeable#close"></div>
     <div class="modal-content">
-      <div class="box has-background-light">
+      <div class="box has-background-light animate-expand-in">
         <%= form_with url: channels_path, method: :post do |f| %>
           <div class="field has-addons">
             <div class="control is-expanded">

@@ -14,13 +14,13 @@ class SubscribeToFeed
     feed = fetch_feed(channel_id: channel_id)
     return if feed.nil?
 
-    if channel = Channel.find_by(youtube_channel_id: feed.youtube_channel_id)
+    if channel = Channel.find_by(youtube_channel_id: channel_id)
       errors << 'Already subscribed to this channel'
       return channel
     end
 
     channel = Channel.create(
-      youtube_channel_id: feed.youtube_channel_id,
+      youtube_channel_id: channel_id,
       youtube_url: feed.url,
       feed_url: feed.feed_url,
       name: feed.title,
