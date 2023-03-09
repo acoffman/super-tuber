@@ -8,5 +8,5 @@ if [ "${*}" == "./bin/rails server" ]; then
 fi
 
 exec "${@}" &
-bundle exec sidekiq &
+bundle exec sidekiq -c 2 &
 fg %1
