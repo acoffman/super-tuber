@@ -11,6 +11,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "redis", "~> 4.0"
+gem 'sidekiq', '~> 7.0.6'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -32,3 +33,5 @@ group :development do
   gem "web-console"
 end
 
+
+gem "dockerfile-rails", ">= 1.2", :group => :development

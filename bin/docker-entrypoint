@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+set -m
+
+# If running the rails server then create or migrate existing database
+if [ "${*}" == "./bin/rails server" ]; then
+  ./bin/rails db:prepare
+fi
+
+exec "${@}" &
+bundle exec sidekiq &
+fg %1
