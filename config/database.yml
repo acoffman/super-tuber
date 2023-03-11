@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_URL') %>
+  database: <%= ENV.fetch('DATABASE_URL') { 'db/production.sqlite3' } %>
