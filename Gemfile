@@ -31,7 +31,5 @@ group :development do
   gem "solargraph"
   gem "pry-byebug"
   gem "web-console"
+  gem "dockerfile-rails", ">= 1.2"
 end
-
-
-gem "dockerfile-rails", ">= 1.2", :group => :development

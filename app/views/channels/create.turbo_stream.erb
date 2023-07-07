@@ -1,5 +1,6 @@
 <%= turbo_stream.replace 'notice' do %>
-  <div data-controller="closeable">
+  <% animate_out_class = @errors.none? ? 'animate-expand-out-slow' : '' %>
+  <div data-controller="closeable" class='animate-expand-in' data-closeable-exit-class-value='animate-fade-out'>
     <% notification_type = @errors.none? ? 'is-primary' : 'is-warning' %>
     <div class="notification block <%= notification_type %>">
       <button class="delete" data-action="click->closeable#close"></button>
